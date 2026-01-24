@@ -6,6 +6,7 @@
     <title>GINA'S EVENT OASIS</title> 
     <link rel="stylesheet" href="./style.css">
     <link rel="icon" type="image/jpeg" href="./images/ChatGPT Image Jan 9, 2026, 02_34_54 PM.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <section class="header" id="header">
@@ -74,79 +75,184 @@
         </div>
     </section> 
 
-    <section class="testimony" id="testimonial"> 
-        <h3 class="section-title">Testimonials</h3> 
-            <p class="services-info2">Hear from our amazing clients, we deliver excellently.</p> 
-    </section>
-
-
-
-
-    <div id="testimony-modal" class="modal" aria-modal="true" role="dialog">
-    <div class="modal-content">
-        <span class="close-btn testimony-close-btn">×</span>
-        <h3>Share Your Testimony, Healing and Breakthrough with Us.</h3>
-        <p>Tell us how God has worked in your life through <strong>Grace Word Center.</strong></p>
-
-        <form action="#" method="POST" class="testimony-form" id="testimony-form-js">
-            <div class="form-group">
-                <label for="testimony-name">Full Name (Optional)</label>
-                <input type="text" id="testimony-name" name="fullName" placeholder="Anonymous or your name">
+<section class="testimony" id="testimonial">
+    <h3 class="section-title">Testimonials</h3>
+        <p style="text-align: center;">Hear awesome testimonies from our amazing clients.</p>
+    <div class="slider-container">
+        <button class="arrow-btn left" id="prevBtn">&#10094;</button>
+        
+        <div class="slider-viewport">
+            <div class="slider-track" id="track">
+                <div class="slide">
+                    <img class="testimonial-image" src="./images/ChatGPT Image Jan 9, 2026, 02_34_54 PM.png" alt="Client 1">
+                    <p class="quote">"Exceptional quality!"</p>
+                    <h4 class="client-name">Sarah Jenkins</h4>
+                </div>
+                <div class="slide">
+                    <img class="testimonial-image" src="./images/ChatGPT Image Jan 9, 2026, 02_34_54 PM.png" alt="Client 2">
+                    <p class="quote">"Highly professional team."</p>
+                    <h4 class="client-name">Mark Thompson</h4>
+                </div>
+                <div class="slide">
+                    <img class="testimonial-image" src="./images/ChatGPT Image Jan 9, 2026, 02_34_54 PM.png"  alt="Client 3">
+                    <p class="quote">"A seamless experience."</p>
+                    <h4 class="client-name">Emma Wilson</h4>
+                </div> 
+                <div class="slide">
+                    <img class="testimonial-image" src="./images/ChatGPT Image Jan 9, 2026, 02_34_54 PM.png"  alt="Client 6">
+                    <p class="quote">"A seamless experience."</p>
+                    <h4 class="client-name">Emma Wilson</h4>
+                </div>
             </div>
+        </div>
 
-            <div class="form-group">
-                <label for="testimony-email">Email Address</label>
-                <input type="email" id="testimony-email" name="emailAddress" required placeholder="For verification (will not be published)">
+        <button class="arrow-btn right" id="nextBtn">&#10095;</button>
+    </div>
+
+    <div class="dots-container" id="dotsContainer"></div> 
+
+    <button class="testimony-btn" id="openTestimonyModal">Send Us your Testimony</button>
+
+</section> 
+
+<section class="contact-us" id="contactus">
+    <h3 class="section-title">Get in Touch</h3>
+            <p style="text-align: center;">Ready to make your next event unforgettable? Reach out to our design team.</p>
+            <div class="contact-container"> 
+            <div class="contact-info">
+            <ul class="contact-details">
+                <li><strong>📍 Address:</strong> 123 Design Plaza, Event City</li>
+                <li><strong>📞 Phone:</strong> +1 (234) 567-890</li>
+                <li><strong>✉️ Email:</strong> hello@ginaeventoasis.com</li>
+            </ul>
+        </div>
+
+        <form class="contact-form">
+            <div class="form-row">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
             </div>
-
-            <div class="form-group">
-                <label for="testimony-title">Testimony Headline</label>
-                <input type="text" id="testimony-title" name="headline" required placeholder="E.g., Divine Healing, Career Lift">
-            </div>
-
-            <div class="form-group">
-                <label for="testimony-message">Your Testimony</label>
-                <textarea id="testimony-message" name="message" rows="6" required placeholder="Write your full story here..."></textarea>
-            </div>
-
-            <button type="submit" class="submit-testimony-btn">Send Testimony</button>
+            <input type="text" placeholder="Subject" required>
+            <textarea placeholder="Tell us about your event (Date, Venue, Style...)" rows="5" required></textarea>
+            <button type="submit" class="submit-contact-btn">Send Message</button>
         </form>
     </div>
+
+    <div class="map-container">
+        <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3975.524474714417!2d7.0000000!3d4.7500000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNMKwNDUnMDAuMCJOIDfCsDAwJzAwLjAiRQ!5e0!3m2!1sen!2sng!4v1234567890" 
+            width="1120px" 
+            height="550" 
+            style="border: 4px dotted goldenrod; border-radius:12px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+    </div>
+</section>
+
+
+<footer class="main-footer">
+    <div class="footer-container">
+        <div class="footer-section about">
+            <h2 class="footer-logo">GINA'S EVENT<span> OASIS</span></h2>
+            <p>Transforming ordinary spaces into extraordinary experiences. Your vision, our design magic.</p>
+        </div>
+
+        <div class="footer-section links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="#testimonial">Testimonials</a></li>
+                <li><a href="#contactus">Contact Us</a></li>
+                <li><a href="#services">Our Services</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section social">
+            <h4>Follow Our Designs</h4>
+            <div class="social-icons">
+                <a href="#" class="social-link instagram" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link pinterest" aria-label="Pinterest">
+                    <i class="fab fa-pinterest"></i>
+                </a>
+                <a href="#" class="social-link facebook" aria-label="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 Gina's Event Oasis | Event Decor Excellence</p>
+    </div>
+</footer>
+
+
+    
+
+
+ 
+
+
+    <script src="./script.js"></script>
+
+       <div id="testimony-modal" class="modal" aria-modal="true" role="dialog">
+    <div class="modal-content">
+        <span class="close-btn testimony-close-btn">×</span>
+
+        <div id="form-wrapper">
+            <h3>Share Your Design Experience</h3>
+            <p>Tell us how we helped bring your <strong>event vision to life.</strong></p>
+
+            <form action="#" method="POST" class="testimony-form" id="testimony-form-js">
+                <div class="form-group">
+                    <label for="testimony-name">Full Name (or Company Name)</label>
+                    <input type="text" id="testimony-name" name="fullName" placeholder="Your name or organization">
+                </div>
+
+                <div class="form-group">
+                    <label for="testimony-email">Email Address</label>
+                    <input type="email" id="testimony-email" name="emailAddress" required placeholder="For our records (not published)">
+                </div>
+
+                <div class="form-group">
+    <label>Rate Your Experience</label>
+    <div class="star-rating">
+        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="Amazing">★</label>
+        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="Good">★</label>
+        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="Average">★</label>
+        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="Poor">★</label>
+        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="Bad">★</label>
+    </div>
+</div>
+
+                <div class="form-group">
+                    <label for="testimony-title">Event Type / Headline</label>
+                    <input type="text" id="testimony-title" name="headline" required placeholder="E.g., Dream Wedding, Gala Dinner, Corporate Launch">
+                </div>
+
+                <div class="form-group">
+                    <label for="testimony-message">Your Review</label>
+                    <textarea id="testimony-message" name="message" rows="5" required placeholder="Describe the ambiance, decor quality, and our team's service..."></textarea>
+                </div>
+
+                <button type="submit" class="submit-testimony-btn">Submit Review</button>
+            </form>
+        </div>
+
+        <div id="testimony-success" style="display: none; text-align: center; padding: 20px;">
+            <div style="font-size: 60px; color: goldenrod; margin-bottom: 15px;">✨</div>
+            <h3>Thank You for the Love!</h3>
+            <p>Your feedback helps us continue creating magical moments. We truly appreciate your support!</p>
+            <button class="testimony-btn" style="position: relative; margin-top: 25px;" onclick="closeModal()">Back to Site</button>
+        </div>
+    </div>
+</div>
 </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
 </body>
 </html>

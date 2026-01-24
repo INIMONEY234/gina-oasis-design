@@ -1,61 +1,159 @@
+//Logic to run testimony slide
+const track = document.getElementById('track');
+const slides = Array.from(track.children);
+const nextBtn = document.getElementById('nextBtn');
+const prevBtn = document.getElementById('prevBtn');
+const dotsContainer = document.getElementById('dotsContainer');
 
+let currentIndex = 0;
+let slideInterval;
 
-//testimony button pop up
-// Get all necessary elements for the testimony form modal
-const testimonyModal = document.getElementById('testimony-modal');
-const testimonyTrigger = document.getElementById('share-testimony-trigger');
-const testimonyCloseBtn = document.querySelector('#testimony-modal .testimony-close-btn');
-const testimonyForm = document.getElementById('testimony-form-js');
-
-// Function to open the modal
-if (testimonyTrigger) {
-    testimonyTrigger.addEventListener('click', (event) => {
-        event.preventDefault(); // Stop the link from navigating
-        testimonyModal.style.display = 'block';
+// 1. Create dots dynamically
+slides.forEach((_, i) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (i === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => {
+        currentIndex = i;
+        updateUI();
+        restartAutoSlide();
     });
+    dotsContainer.appendChild(dot);
+});
+
+const dots = document.querySelectorAll('.dot');
+
+function updateUI() {
+    // 1. Move the track
+    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+    
+    // 2. Update Dots
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[currentIndex].classList.add('active');
+
+    // 3. Update Slide Animation (The new part)
+    slides.forEach(slide => slide.classList.remove('active-slide'));
+    slides[currentIndex].classList.add('active-slide');
 }
 
-// Function to close the modal using the 'x' button
-if (testimonyCloseBtn) {
-    testimonyCloseBtn.addEventListener('click', () => {
-        testimonyModal.style.display = 'none';
-        testimonyForm.reset(); // Optionally clear the form on close
-    });
+// Ensure the first slide is active on page load
+slides[0].classList.add('active-slide');
+
+function showNextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateUI();
 }
 
-// Function to close the modal if the user clicks outside of it
-window.addEventListener('click', (event) => {
-    if (event.target === testimonyModal) {
+function showPrevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    updateUI();
+}
+
+// Controls
+nextBtn.addEventListener('click', () => { showNextSlide(); restartAutoSlide(); });
+prevBtn.addEventListener('click', () => { showPrevSlide(); restartAutoSlide(); });
+
+// Timer Logic
+function startAutoSlide() { slideInterval = setInterval(showNextSlide, 9000); }
+function restartAutoSlide() { clearInterval(slideInterval); startAutoSlide(); }
+
+track.addEventListener('mouseenter', () => clearInterval(slideInterval));
+track.addEventListener('mouseleave', startAutoSlide);
+
+startAutoSlide();
+
+
+
+
+
+//testimony button pop up 
+
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Get Elements
+    const testimonyModal = document.getElementById('testimony-modal');
+    const openModalBtn = document.getElementById('openTestimonyModal');
+    const closeBtn = document.querySelector('.testimony-close-btn');
+    const testimonyForm = document.getElementById('testimony-form-js');
+    const successMessage = document.getElementById('testimony-success');
+
+    // 2. Open Modal
+    if (openModalBtn && testimonyModal) {
+        openModalBtn.addEventListener('click', () => {
+            testimonyModal.style.display = 'flex';
+        });
+    }
+
+    // 3. Close Modal (Function)
+    function closeModal() {
         testimonyModal.style.display = 'none';
-        testimonyForm.reset(); 
+        // Reset form for next use
+        setTimeout(() => {
+            if (testimonyForm) testimonyForm.style.display = 'block';
+            if (successMessage) successMessage.style.display = 'none';
+        }, 500);
+    }
+
+    // 4. Attach Close Events
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeModal);
+    }
+
+    window.addEventListener('click', (event) => {
+        if (event.target === testimonyModal) {
+            closeModal();
+        }
+    });
+
+    // 5. Form Logic
+    if (testimonyForm) {
+        testimonyForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            testimonyForm.style.display = 'none';
+            successMessage.style.display = 'block';
+            testimonyForm.reset();
+        });
     }
 });
 
-// Form Submission Handler
-if (testimonyForm) {
-    testimonyForm.addEventListener('submit', (event) => {
-        event.preventDefault(); // Stop default form submission/page reload
-        
-        // 1. Simulate data handling (In a real application, you would send this via AJAX/Fetch)
-        console.log('Testimony Data Sent:', new FormData(testimonyForm));
 
-        // 2. Hide the modal
-        testimonyModal.style.display = 'none';
 
-        // 3. Clear the form
-        testimonyForm.reset();
 
-        // 4. Show the "Sent" alert
-        alert('Testimony Sent! Thank you for sharing your story.'); 
-        
-        // Note: For better UX, you could replace the browser alert() with a custom success modal.
-    });
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const modal = document.getElementById('testimony-modal');
+    const formWrapper = document.getElementById('form-wrapper');
+    const successBox = document.getElementById('testimony-success');
+    const testimonyForm = document.getElementById('testimony-form-js');
+
+    // Handle Form Submission
+    if (testimonyForm) {
+        testimonyForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Hide the form area, show the success area
+            formWrapper.style.display = 'none';
+            successBox.style.display = 'block';
+            
+            testimonyForm.reset();
+        });
+    }
+});
+
+// Move this outside the DOMContentLoaded so the 'onclick' in HTML can find it
+function closeModal() {
+    const modal = document.getElementById('testimony-modal');
+    const formWrapper = document.getElementById('form-wrapper');
+    const successBox = document.getElementById('testimony-success');
+    
+    modal.style.display = 'none';
+    
+    // Reset the modal content back to the form for next time
+    setTimeout(() => {
+        formWrapper.style.display = 'block';
+        successBox.style.display = 'none';
+    }, 400);
 }
-
-
-
-
-
-
-
-
